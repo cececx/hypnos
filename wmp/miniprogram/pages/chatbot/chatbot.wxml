@@ -1,0 +1,30 @@
+<!--miniprogram/pages/chatbot/chatbot.wxml-->
+
+<scroll-view class="content" scroll-y scroll-top="{{scrollTop}}">
+  <view class="chat">
+    <ul class="chat-list">
+      <li wx:for="{{chat}}">
+        <div class="msg-{{item.type}}">{{item.content}}</div>
+      </li>
+    </ul>
+    <view wx:if="{{show_options}}">
+    <ul wx:if="{{single_select}}" class="options options-single">
+      <li wx:for="{{options}}">
+        <button id="{{index}}" bindtap="onSingleCheck">{{item.content}}</button>
+      </li>
+    </ul>
+    <view wx:else>
+    <select multiple class="options options-multiple">
+      <option wx:for="{{options}}"
+              id="{{index}}"
+              value="{{index}}" 
+              bindtap="onMultiCheck" 
+              class="{{item.class}}">
+        {{item.content}}
+      </option>
+    </select>
+    <button class="confirm-btn {{option_state}}" bindtap="onMultiSend">确认</button>
+    </view>
+    </view>
+  </view>
+</scroll-view>
