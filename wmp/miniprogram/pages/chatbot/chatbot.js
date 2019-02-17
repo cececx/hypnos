@@ -30,12 +30,16 @@ Page({
     ],
     option_display: true,
     option_type: 'time_selector',
-    options: [{
-        template: "我想要每天睡 {0} 个小时",
-        content: "我想要...", 
-        value: [-1]
-      }],
-    option_state: "disabled",
+    options: [],
+    send_state: "disabled",
+    picker: {
+      template: "我想要每天睡 {} 小时",
+      content: "我想要每天睡 ___ 小时",
+      value: -1,
+      range: [6, 7, 8, 9, 10],
+      text: ["6", "7", "8", "9", "10"],
+      index: 2,
+    },
     scrollTop: 0,
   },
 
@@ -225,6 +229,26 @@ Page({
     this.loadMessage(res.next)
   },
 
+  onPickerChange: function (e) {
+    let index = e.detail.value
+    let content = this.data.picker.template.replace('{}', this.data.picker.text[index])
+    this.data.picker.value = index
+    this.data.picker.index = index
+    this.data.picker.content = content
+    this.data.picker.class = "checked"
+    this.setData({
+      picker: this.data.picker,
+      send_state: true
+    })
+  },
+
+  onPickerSend: function (e) {
+    this.sendMessage(this.data.picker.content, "user")
+    this.setData({
+      picker: {},
+      option_display: false
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

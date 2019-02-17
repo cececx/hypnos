@@ -27,15 +27,19 @@
           {{item.content}}
         </option>
       </select>
-      <button class="confirm-btn {{option_state}}" bindtap="onMultiSend">确认</button>
+      <button class="confirm-btn {{send_state}}" bindtap="onMultiSend">确认</button>
       </view>
 
       <!-- Time selector -->
-      <ul wx:if="{{option_type=='time_selector'}}" class="options options-selector">
-        <li wx:for="{{options}}">
-          <button id="{{index}}" bindtap="onSingleCheck">{{item.content}}</button>
-        </li>
-      </ul>
+      <view wx:if="{{option_type=='time_selector'}}">
+        <picker class="options options-multiple"
+                bindchange="onPickerChange" 
+                value="{{picker.index}}" 
+                range="{{picker.range}}">
+          <button class="{{picker.class}}">{{picker.content}}</button>
+        </picker>
+        <button class="confirm-btn {{send_state}}" bindtap="onPickerSend">确认</button>
+      </view>
     </view>
   </view>
 </scroll-view>

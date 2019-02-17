@@ -65,8 +65,8 @@
 .options-single li button:active {
   color: #cbe1ff;
 }
-.options-multiple option {
-  width: 80vw;
+.options-multiple option,picker button {
+  width: 85vw;
   margin: .2rem;
   padding: .4rem .7rem;
   display: inline-block;
