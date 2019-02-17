@@ -7,24 +7,35 @@
         <div class="msg-{{item.type}}">{{item.content}}</div>
       </li>
     </ul>
-    <view wx:if="{{show_options}}">
-    <ul wx:if="{{single_select}}" class="options options-single">
-      <li wx:for="{{options}}">
-        <button id="{{index}}" bindtap="onSingleCheck">{{item.content}}</button>
-      </li>
-    </ul>
-    <view wx:else>
-    <select multiple class="options options-multiple">
-      <option wx:for="{{options}}"
-              id="{{index}}"
-              value="{{index}}" 
-              bindtap="onMultiCheck" 
-              class="{{item.class}}">
-        {{item.content}}
-      </option>
-    </select>
-    <button class="confirm-btn {{option_state}}" bindtap="onMultiSend">确认</button>
-    </view>
+    <view wx:if="{{option_display}}">
+
+      <!-- Single select option -->
+      <ul wx:if="{{option_type=='single'}}" class="options options-single">
+        <li wx:for="{{options}}">
+          <button id="{{index}}" bindtap="onSingleCheck">{{item.content}}</button>
+        </li>
+      </ul>
+
+      <!-- Multiple select option -->
+      <view wx:if="{{option_type=='multiple'}}">
+      <select multiple class="options options-multiple">
+        <option wx:for="{{options}}"
+                id="{{index}}"
+                value="{{index}}" 
+                bindtap="onMultiCheck" 
+                class="{{item.class}}">
+          {{item.content}}
+        </option>
+      </select>
+      <button class="confirm-btn {{option_state}}" bindtap="onMultiSend">确认</button>
+      </view>
+
+      <!-- Time selector -->
+      <ul wx:if="{{option_type=='time_selector'}}" class="options options-selector">
+        <li wx:for="{{options}}">
+          <button id="{{index}}" bindtap="onSingleCheck">{{item.content}}</button>
+        </li>
+      </ul>
     </view>
   </view>
 </scroll-view>
