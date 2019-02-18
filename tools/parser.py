@@ -1,8 +1,14 @@
 import json
+import sys
 
-CONFIG_FILE = 'flow_text'
-OUTPUT_FILE = 'flow.json'
+CONFIG_FILE = 'flow_config_{}'.format(sys.argv[1])
+OUTPUT_FILE = 'flow_{}.json'.format(sys.argv[1])
 UNIQUE_PREFIX = 'UNIQUE**'
+OPTION_TYPE_MAP = {
+  'S': 'single',
+  'M': 'multiple',
+  'P': 'picker'
+}
 
 
 def create_chatbot_node(msg):
@@ -54,14 +60,26 @@ def create_multi_content(lines):
   return content
 
 
+def create_picker_content(lines):
+  return {
+    'template': lines[0],
+    'range': lines[1].split(','),
+    'index': int(lines[2])
+  }
+
+
+OPTION_SWITCHER = {
+  'S': create_single_content,
+  'M': create_multi_content,
+  'P': create_picker_content
+}
+
+
 def create_user_node(msg):
   node = {}
   node['type'] = 'USER'
-  node['single_select'] = True if msg['type'] == 'S' else False
-  if node['single_select']:
-    node['content'] = create_single_content(msg['options'])
-  else:
-    node['content'] = create_multi_content(msg['options'])
+  node['option_type'] = OPTION_TYPE_MAP[msg['type']]
+  node['content'] = OPTION_SWITCHER[msg['type']](msg['options'])
   return node
 
 
