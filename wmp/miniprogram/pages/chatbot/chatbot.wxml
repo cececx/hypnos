@@ -31,10 +31,10 @@
       </view>
 
       <!-- Time selector -->
-      <view wx:if="{{option_type=='time_selector'}}">
+      <view wx:if="{{option_type=='picker'}}">
         <picker class="options options-multiple"
                 bindchange="onPickerChange" 
-                value="{{picker.index}}" 
+                value="{{picker.value}}" 
                 range="{{picker.range}}">
           <button class="{{picker.class}}">{{picker.content}}</button>
         </picker>

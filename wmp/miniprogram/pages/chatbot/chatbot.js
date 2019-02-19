@@ -1,8 +1,11 @@
 // miniprogram/pages/chatbot/chatbot.js
 var MS_SLEEP_IMPROVE_ID = 13
 var MS_SLEEP_IMPROVE_NEXT = 14
+var PK_SLEEP_LENGTH_ID = 21
+var PK_SLEEP_LENGTH_NEXT = 22
 var TIMEOUT_MSG_BEFORE = 0
 var TIMEOUT_MSG_AFTER_FACTOR = 0
+var PICKER_TEMP_TEXT = "___"
 
 Page({
 
@@ -10,35 +13,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-    chat: [
-      {
-        content: 'Hi！(｡･∀･)ﾉﾞ你好呀，很高兴见到你！',
-        type: 'chatbot'
-      },
-      {
-        content: '自我介绍一下，我叫眠眠，由哥伦比亚大学超级厉害研究院设计，是你的私人定制小机器人，帮助你更好地应对睡眠问题。',
-        type: 'chatbot'
-      },
-      {
-        content: '你好呀',
-        type: 'user'
-      },
-      {
-        content: '每天想睡多久呢？',
-        type: 'chatbot'
-      },
-    ],
-    option_display: true,
-    option_type: 'time_selector',
+    chat: [],
+    option_display: false,
+    option_type: 'picker',
     options: [],
     send_state: "disabled",
     picker: {
       template: "我想要每天睡 {} 小时",
       content: "我想要每天睡 ___ 小时",
-      value: -1,
-      range: [6, 7, 8, 9, 10],
-      text: ["6", "7", "8", "9", "10"],
-      index: 2,
+      range: ["6", "7", "8", "9", "10"],
+      value: 2,
     },
     scrollTop: 0,
   },
@@ -47,20 +31,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // this.loadChatScriptFromDb("main_flow")
+    this.loadFromDbAndStart("picker", 17)
   },
 
   /**
    * Loads chat script config from db.
    */
-  loadChatScriptFromDb: function (name) {
+  loadFromDbAndStart: function (name, id) {
     const db = wx.cloud.database()
     db.collection('chatflow').where({
       name: name
     }).get({
       success: res => {
         this.chat_flow = res.data[0]
-        this.loadMessage(0)
+        this.loadMessage(id)
       },
       fail: err => {
         wx.showToast({
@@ -72,14 +56,11 @@ Page({
     })
   },
 
-  getMultiselectCallback: function (id) {
+  getOptionCallback: function (id) {
     switch (id) {
-      case MS_SLEEP_IMPROVE_ID: 
-        return this.callbackSleepImprovement
-        break
-      default:
-        console.log('callback id ', id, ' not found.')
-        break
+      case MS_SLEEP_IMPROVE_ID: return this.callbackSleepImprovement
+      case PK_SLEEP_LENGTH_ID: return this.callbackSleepLength
+      default: console.error("Failed to get callback for node ", id)
     }
   },
 
@@ -93,6 +74,12 @@ Page({
     return {
       next: MS_SLEEP_IMPROVE_NEXT,
       text: lines.join("，")
+    }
+  },
+
+  callbackSleepLength: function (value) {
+    return {
+      next: PK_SLEEP_LENGTH_NEXT
     }
   },
 
@@ -115,18 +102,28 @@ Page({
   },
 
   loadMessage: function (id) {
+    console.log(id)
     if (id == -1) {
       return
     }
     let message = this.chat_flow[id]
+    console.log(message)
     if (message.type == "CHATBOT") {
       this.addChatbotMessage(message.content[0])
     }
     else if (message.type == "USER") {
-      if (message.single_select) {
-        this.addSingleSelect(message.content)
-      } else {
-        this.addMultiSelect(message.content, id)
+      switch(message.option_type) {
+        case "single":
+          this.addSingleSelect(message.content)
+          break
+        case "multiple":
+          this.addMultiSelect(message.content, id)
+          break
+        case "picker":
+          this.addPicker(message.content, id)
+          break
+        default:
+          break
       }
     }
   },
@@ -171,7 +168,22 @@ Page({
       options: this.data.options,
       option_display: true,
       option_type: 'multiple',
-      multiselect_callback: this.getMultiselectCallback(id)
+      option_id: id,
+    })
+    this.scrollToBottom()
+  },
+
+  addPicker: function (content, id) {
+    this.setData({
+      picker: {
+        template: content.template,
+        content: content.template.replace("{}", PICKER_TEMP_TEXT),
+        range: content.range,
+        value: content.index,
+      },
+      option_display: true,
+      option_type: 'picker',
+      option_id: id
     })
     this.scrollToBottom()
   },
@@ -206,8 +218,8 @@ Page({
       checked |= this.data.options[i].checked;
       this.data.options[i].class = this.data.options[i].checked ? "checked" : ""
     }
-    this.data.option_state = checked ? "" : "disabled"
-    this.setData({options: this.data.options, option_state: this.data.option_state})
+    this.data.send_state = checked ? "" : "disabled"
+    this.setData({options: this.data.options, send_state: this.data.send_state})
   },
 
   onMultiSend: function (e) {
@@ -220,7 +232,7 @@ Page({
       contents.push(this.data.options[i].text)
       check.push(this.data.options[i].checked)
     }
-    let res = this.data.multiselect_callback(contents, check)
+    let res = this.getOptionCallback(this.data.option_id)(contents, check)
     this.setData({ 
       options: [], 
       option_display: false
@@ -231,9 +243,8 @@ Page({
 
   onPickerChange: function (e) {
     let index = e.detail.value
-    let content = this.data.picker.template.replace('{}', this.data.picker.text[index])
+    let content = this.data.picker.template.replace('{}', this.data.picker.range[index])
     this.data.picker.value = index
-    this.data.picker.index = index
     this.data.picker.content = content
     this.data.picker.class = "checked"
     this.setData({
@@ -248,6 +259,8 @@ Page({
       picker: {},
       option_display: false
     })
+    let res = this.getOptionCallback(this.data.option_id)(this.data.picker.value)
+    this.loadMessage(res.next)
   },
 
   /**
