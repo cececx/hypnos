@@ -1,0 +1,5 @@
+.content {
+  font-size: 12pt;
+  color: #999999;
+  margin-bottom: 12rpx;
+}

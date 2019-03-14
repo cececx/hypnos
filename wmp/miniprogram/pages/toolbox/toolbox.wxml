@@ -1,0 +1,11 @@
+<view class="container">
+<div class="card">
+ <div class="card-content"><span>失眠的大脑</span></div>
+</div>
+<div class="card">
+ <div class="card-content"><span>思维陷阱</span></div>
+</div>
+<div class="card">
+ <div class="card-content"><span>睡眠的秘密</span></div>
+</div>
+</view>

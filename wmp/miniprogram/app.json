@@ -1,19 +1,53 @@
 {
   "pages": [
     "pages/chatbot/chatbot",
-    "pages/index/index",
-    "pages/userConsole/userConsole",
-    "pages/storageConsole/storageConsole",
-    "pages/databaseGuide/databaseGuide",
-    "pages/addFunction/addFunction",
-    "pages/deployFunctions/deployFunctions",
-    "pages/chooseLib/chooseLib"
+    "pages/user/user",
+    "pages/toolbox/toolbox",
+    "pages/journal/journal",
+    "pages/log/log"
   ],
   "window": {
-    "backgroundColor": "#F6F6F6",
+    "backgroundColor": "#ffffff",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "是眠眠呀",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "眠眠AI",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#2c2c2c",
+    "selectedColor": "#549af8",
+    "borderStyle": "white",
+    "list": [
+      {
+        "text": "眠眠",
+        "pagePath": "pages/chatbot/chatbot",
+        "iconPath": "images/icon-chat.png",
+        "selectedIconPath": "images/icon-chat-active.png"
+      },
+      {
+        "text": "工具箱",
+        "pagePath": "pages/toolbox/toolbox",
+        "iconPath": "images/icon-toolbox.png",
+        "selectedIconPath": "images/icon-toolbox-active.png"
+      },
+      {
+        "text": "记录",
+        "pagePath": "pages/log/log",
+        "iconPath": "images/icon-add.png",
+        "selectedIconPath": "images/icon-add-active.png"
+      },
+      {
+        "text": "日志",
+        "pagePath": "pages/journal/journal",
+        "iconPath": "images/icon-journal.png",
+        "selectedIconPath": "images/icon-journal-active.png"
+      },
+      {
+        "text": "我",
+        "pagePath": "pages/user/user",
+        "iconPath": "images/icon-user.png",
+        "selectedIconPath": "images/icon-user-active.png"
+      }
+    ]
   }
 }

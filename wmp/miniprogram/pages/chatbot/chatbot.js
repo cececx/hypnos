@@ -23,6 +23,7 @@ Page({
       content: "我想要每天睡 ___ 小时",
       range: ["6", "7", "8", "9", "10"],
       value: 2,
+      selected: false
     },
     scrollTop: 0,
   },
@@ -31,7 +32,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.loadFromDbAndStart("picker", 17)
+    this.loadFromDbAndStart("main", 0)
   },
 
   /**
@@ -247,6 +248,7 @@ Page({
     this.data.picker.value = index
     this.data.picker.content = content
     this.data.picker.class = "checked"
+    this.data.picker.selected = true
     this.setData({
       picker: this.data.picker,
       send_state: true
@@ -254,6 +256,9 @@ Page({
   },
 
   onPickerSend: function (e) {
+    if (!this.data.picker.selected) {
+      return
+    }
     this.sendMessage(this.data.picker.content, "user")
     this.setData({
       picker: {},

@@ -5,3 +5,21 @@
   align-items: center;
   box-sizing: border-box;
 } 
+
+.card {
+  width: 90%;
+  background-color: #f8f8f8;
+  border-radius: 40rpx;
+  margin: 18rpx 0;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  margin: 40rpx
+}
+
+.card-title {
+  margin-bottom: 14rpx;
+  font-size: 14pt;
+}

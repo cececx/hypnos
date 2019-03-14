@@ -1,0 +1,5 @@
+.card-content {
+  text-align: center;
+  padding: 40rpx 0;
+  font-size: 14pt;
+}
