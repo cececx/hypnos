@@ -31,22 +31,10 @@
         "selectedIconPath": "images/icon-toolbox-active.png"
       },
       {
-        "text": "记录",
-        "pagePath": "pages/log/log",
-        "iconPath": "images/icon-add.png",
-        "selectedIconPath": "images/icon-add-active.png"
-      },
-      {
         "text": "日志",
         "pagePath": "pages/journal/journal",
         "iconPath": "images/icon-journal.png",
         "selectedIconPath": "images/icon-journal-active.png"
-      },
-      {
-        "text": "我",
-        "pagePath": "pages/user/user",
-        "iconPath": "images/icon-user.png",
-        "selectedIconPath": "images/icon-user-active.png"
       }
     ]
   }

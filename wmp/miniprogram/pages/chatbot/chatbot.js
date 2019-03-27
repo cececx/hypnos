@@ -1,11 +1,17 @@
 // miniprogram/pages/chatbot/chatbot.js
-var MS_SLEEP_IMPROVE_ID = 13
-var MS_SLEEP_IMPROVE_NEXT = 14
-var PK_SLEEP_LENGTH_ID = 21
-var PK_SLEEP_LENGTH_NEXT = 22
-var TIMEOUT_MSG_BEFORE = 0
-var TIMEOUT_MSG_AFTER_FACTOR = 0
-var PICKER_TEMP_TEXT = "___"
+var chat = require('../../util/chat.js');
+var database = require('../../util/database.js');
+
+const TYPE = {
+  SINGLE_SELECT: 'single',
+  MULTI_SELECT: 'multiple',
+  PICKER: 'picker',
+  TEXT_INPUT: 'text_input'
+};
+
+const TIMEOUT_MSG_BEFORE = 0;
+const TIMEOUT_MSG_AFTER_FACTOR = 0;
+const PICKER_TEMP_TEXT = "___";
 
 Page({
 
@@ -15,16 +21,9 @@ Page({
   data: {
     chat: [],
     option_display: false,
-    option_type: 'picker',
+    option_type: 'multiple',
     options: [],
     send_state: "disabled",
-    picker: {
-      template: "我想要每天睡 {} 小时",
-      content: "我想要每天睡 ___ 小时",
-      range: ["6", "7", "8", "9", "10"],
-      value: 2,
-      selected: false
-    },
     scrollTop: 0,
   },
 
@@ -32,29 +31,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.loadFromDbAndStart("main", 0)
+    chat.loadChat().then(this.loadFromDbAndStart);
   },
 
   /**
    * Loads chat script config from db.
    */
-  loadFromDbAndStart: function (name, id) {
-    const db = wx.cloud.database()
-    db.collection('chatflow').where({
-      name: name
-    }).get({
-      success: res => {
-        this.chat_flow = res.data[0]
-        this.loadMessage(id)
-      },
-      fail: err => {
-        wx.showToast({
-          icon: 'none',
-          title: '连接失败'
-        })
-        console.error('[数据库] [查询记录] 失败：', err)
-      }
-    })
+  loadFromDbAndStart: function (stage) {
+    let name = stage.name;
+    let id = stage.id;
+    database.loadChat(name, id, (chatflow, id)=>{
+      this.chat_flow = chatflow;
+      this.loadMessage(id);
+    });
   },
 
   getOptionCallback: function (id) {
@@ -65,16 +54,63 @@ Page({
     }
   },
 
-  callbackSleepImprovement: function (content, checks) {
-    let lines = []
-    for (let i = 0; i < content.length; i++) {
-      if (checks[i]) {
-        lines.push(content[i])
+  /**
+   * Resolves user reaction.
+   * @param {number} id The current node id.
+   * @param {string} type MULTISELECT, PICKER, or TEXT.
+   * @param {Object[]} options
+   * @returns {Promise<Resolve>}
+   */
+  resolveReaction: function (id, type, options) {
+    return new Promise((resolve, reject) => {
+      chat.resolveReaction(id, options).then((res) => {
+        console.log(res)
+        if (res.next == -1) {
+          console.log("bbbb")
+          res = this.resolveDefault(type, options)
+        }
+        resolve(res);
+      })
+    });
+  },
+
+  resolveDefault: function (type, options) {
+    console.log(type)
+    switch (type) {
+      case TYPE.MULTI_SELECT:
+        console.log("aaa")
+        return this.resolveMultiSelect(options);
+      default:
+        return { next: -2, msg: "" }; 
+    }
+  },
+
+  /** 
+   * Resolves multiple selection.
+   * 
+   * @typedef {Object} Resolve
+   * @property {number} next The next node id, -1 for unspecified, -2 for ending chat.
+   * @property {string} msg The message typed by user.
+   * 
+   * @param {Object[]} options User selected options.
+   * @param {string} options[].text
+   * @param {boolean} options[].checked
+   * @param {number} options[].next
+   * @returns {Resolve}
+   */
+  resolveMultiSelect: function (options) {
+    console.log(options);
+    let lines = [];
+    let next = -1;
+    for (let i = 0; i < options.length; i++) {
+      if (options[i].checked) {
+        lines.push(options[i].text);
+        next = options[i].next;
       }
     }
     return {
-      next: MS_SLEEP_IMPROVE_NEXT,
-      text: lines.join("，")
+      next: next,
+      msg: lines.join("，")
     }
   },
 
@@ -103,24 +139,22 @@ Page({
   },
 
   loadMessage: function (id) {
-    console.log(id)
-    if (id == -1) {
+    if (id == -2) {
       return
     }
     let message = this.chat_flow[id]
-    console.log(message)
     if (message.type == "CHATBOT") {
       this.addChatbotMessage(message.content[0])
     }
     else if (message.type == "USER") {
       switch(message.option_type) {
-        case "single":
+        case TYPE.SINGLE_SELECT:
           this.addSingleSelect(message.content)
           break
-        case "multiple":
+        case TYPE.MULTI_SELECT:
           this.addMultiSelect(message.content, id)
           break
-        case "picker":
+        case TYPE.PICKER:
           this.addPicker(message.content, id)
           break
         default:
@@ -151,7 +185,7 @@ Page({
     this.setData({
       options: this.data.options,
       option_display: true,
-      option_type: "single"
+      option_type: TYPE.SINGLE_SELECT
     })
     this.scrollToBottom()
   },
@@ -163,12 +197,14 @@ Page({
         content: option.option,
         text: option.text,
         unique: option.unique,
+        next: option.next,
+        checked: false
       })
     }
     this.setData({
       options: this.data.options,
       option_display: true,
-      option_type: 'multiple',
+      option_type: TYPE.MULTI_SELECT,
       option_id: id,
     })
     this.scrollToBottom()
@@ -183,7 +219,7 @@ Page({
         value: content.index,
       },
       option_display: true,
-      option_type: 'picker',
+      option_type: TYPE.PICKER,
       option_id: id
     })
     this.scrollToBottom()
@@ -227,19 +263,16 @@ Page({
     if (this.data.option_state == "disabled") {
       return
     }
-    let contents = []
-    let check = []
-    for (let i = 0; i < this.data.options.length; i++) {
-      contents.push(this.data.options[i].text)
-      check.push(this.data.options[i].checked)
-    }
-    let res = this.getOptionCallback(this.data.option_id)(contents, check)
-    this.setData({ 
-      options: [], 
-      option_display: false
-    })
-    this.sendMessage(res.text, "user")
-    this.loadMessage(res.next)
+    this.resolveReaction(this.data.option_id, TYPE.MULTI_SELECT, this.data.options)
+      .then((res) => {
+        console.log(res)
+        this.setData({
+          options: [],
+          option_display: false
+        })
+        this.sendMessage(res.msg, "user")
+        this.loadMessage(res.next)
+      });
   },
 
   onPickerChange: function (e) {

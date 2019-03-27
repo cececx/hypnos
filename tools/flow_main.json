@@ -3,7 +3,7 @@
     "content": [
       {
         "next": 1,
-        "text": "Hi\uff01(\uff61\uff65\u2200\uff65)\uff89\uff9e\u4f60\u597d\u5440\uff0c\u5f88\u9ad8\u5174\u89c1\u5230\u4f60\uff01"
+        "text": "Hi\uff01(\uff61\uff65\u2200\uff65)\uff89\uff9e\u4f60\u597d\u5440\uff0c\u5f88\u9ad8\u5174\u89c1\u5230\u4f60\uff01\u81ea\u6211\u4ecb\u7ecd\u4e00\u4e0b\uff0c\u6211\u53eb\u7720\u7720\uff0c\u662f\u4f60\u7684\u79c1\u4eba\u5b9a\u5236\u5c0f\u673a\u5668\uff0c\u5e2e\u52a9\u4f60\u66f4\u597d\u5730\u5e94\u5bf9\u7761\u7720\u95ee\u9898\u3002"
       }
     ],
     "type": "CHATBOT"
@@ -12,65 +12,11 @@
     "content": [
       {
         "next": 2,
-        "text": "\u6211\u53ef\u4ee5\u53eb\u4f60xx\uff08\u5fae\u4fe1\u540d\uff09\u5417\uff1f"
-      }
-    ],
-    "type": "CHATBOT"
-  },
-  "2": {
-    "content": [
-      {
-        "next": 5,
-        "option": "\u597d\u5440",
-        "text": "\u597d\u5440"
-      },
-      {
-        "next": 3,
-        "option": "\u6362\u4e2a\u79f0\u547c",
-        "text": "\u6362\u4e2a\u79f0\u547c"
-      }
-    ],
-    "option_type": "single",
-    "type": "USER"
-  },
-  "3": {
-    "content": [
-      {
-        "next": 4,
-        "text": "\u4f60\u5e0c\u671b\u6211\u53eb\u4f60\u4ec0\u4e48\u5462\uff1f"
-      }
-    ],
-    "type": "CHATBOT"
-  },
-  "4": {
-    "content": [
-      {
-        "next": 5,
-        "option": "\u6682\u65f6\u4e0d\u652f\u6301\u6539\u540d\u5b57\u6240\u4ee5\u4f60\u5c31\u53eb\u8fd9\u4e2a\u5427lol",
-        "text": "\u554a\u7b97\u4e86\u5427"
-      }
-    ],
-    "option_type": "single",
-    "type": "USER"
-  },
-  "5": {
-    "content": [
-      {
-        "next": 6,
-        "text": "\u81ea\u6211\u4ecb\u7ecd\u4e00\u4e0b\uff0c\u6211\u53eb\u7720\u7720\uff0c\u7531\u54e5\u4f26\u6bd4\u4e9a\u5927\u5b66\u8d85\u7ea7\u5389\u5bb3\u7814\u7a76\u9662\u8bbe\u8ba1\uff0c\u662f\u4f60\u7684\u79c1\u4eba\u5b9a\u5236\u5c0f\u673a\u5668\u4eba\uff0c\u5e2e\u52a9\u4f60\u66f4\u597d\u5730\u5e94\u5bf9\u7761\u7720\u95ee\u9898\u3002"
-      }
-    ],
-    "type": "CHATBOT"
-  },
-  "6": {
-    "content": [
-      {
-        "next": 7,
         "option": "\u4f60\u597d\u5440",
         "text": "\u4f60\u597d\u5440"
       },
       {
-        "next": 7,
+        "next": 2,
         "option": "Aloha",
         "text": "Aloha"
       }
@@ -78,49 +24,61 @@
     "option_type": "single",
     "type": "USER"
   },
-  "7": {
+  "2": {
     "content": [
       {
-        "next": 8,
-        "text": "\u7720\u7720\u4e3b\u8981\u4f9d\u636e\u5df2\u88ab\u5927\u91cf\u7814\u7a76\u8bc1\u5b9e\u6709\u6548\u7684\u7761\u7720\u8ba4\u77e5\u884c\u4e3a\u7597\u6cd5\uff08CBT-I\uff09\uff0c\u878d\u5408\u4e86\u81ea\u5f8b\u5b66\u4e60\u7684\u53cd\u9988\u673a\u5236\uff0c\u901a\u8fc7AI\u6280\u672f\u6765\u5e2e\u52a9\u4f60\u5efa\u7acb\u6b63\u786e\u7684\u7761\u7720\u51c6\u5907\u884c\u4e3a\uff0c\u8fdb\u4e00\u6b65\u63d0\u9ad8\u7761\u7720\u8d28\u91cf\u3002"
+        "next": 3,
+        "text": "\u63a5\u4e0b\u6765\u6211\u4f1a\u534f\u52a9\u5236\u5b9a\u4e00\u4e2a\u5c5e\u4e8e\u4f60\u7684\u7761\u7720\u8ba1\u5212\uff0c\u517b\u6210\u597d\u7684\u7761\u7720\u4e60\u60ef\u3002\u6211\u4f1a\u4e00\u76f4\u966a\u5728\u4f60\u8eab\u8fb9\u3002"
       }
     ],
     "type": "CHATBOT"
   },
-  "8": {
+  "3": {
     "content": [
       {
         "next": 9,
-        "text": "\u7761\u7720\u8ba4\u77e5\u884c\u4e3a\u7597\u6cd5\u8ba4\u4e3a\u7761\u7720\u95ee\u9898\u662f\u7531\u9519\u8bef\u7684\u5e94\u5bf9\u884c\u4e3a\u548c\u5fc3\u7406\u9020\u6210\u7684\u3002\u7720\u7720\u4f1a\u5e2e\u4f60\u5236\u5b9a\u9002\u5408\u4f60\u7684\u884c\u4e3a\u6539\u53d8\u8ba1\u5212\uff0c\u6311\u6218\u4e0d\u5229\u4e8e\u7761\u7720\u7684\u60f3\u6cd5\uff0c\u901a\u8fc7\u5efa\u7acb\u65b0\u7684\u884c\u4e3a\u548c\u601d\u7ef4\u6a21\u5f0f\u6765\u6539\u5584\u7761\u7720\u95ee\u9898\u3002\u6539\u53d8\u5728\u4e00\u5f00\u59cb\u53ef\u80fd\u4f1a\u963b\u529b\u91cd\u91cd\uff0c\u4f46\u4f60\u8981\u76f8\u4fe1\u65b0\u7684\u884c\u4e3a\u548c\u601d\u7ef4\u4e00\u5b9a\u4f1a\u8ba9\u4f60\u7761\u5f97\u66f4\u597d\uff0c\u575a\u6301\u5c31\u662f\u80dc\u5229\u270c\ufe0f"
-      }
-    ],
-    "type": "CHATBOT"
-  },
-  "9": {
-    "content": [
+        "option": "\u55ef\u55ef",
+        "text": "\u55ef\u55ef"
+      },
       {
-        "next": 10,
-        "option": "Wow\uff0c\u597d\u554a",
-        "text": "Wow\uff0c\u597d\u554a"
+        "next": 9,
+        "option": "\u597d\u7684",
+        "text": "\u597d\u7684"
       }
     ],
     "option_type": "single",
     "type": "USER"
   },
+  "9": {
+    "content": [
+      {
+        "next": 10,
+        "text": "\u7720\u7720\u4e3b\u8981\u5e94\u7528\u7761\u7720\u8ba4\u77e5\u884c\u4e3a\u7597\u6cd5\uff08CBT-I\uff09\uff0c\u878d\u5408\u4e86\u81ea\u5f8b\u5b66\u4e60\u7684\u53cd\u9988\u673a\u5236\uff0c\u901a\u8fc7AI\u6280\u672f\u6765\u5e2e\u52a9\u4f60\u5efa\u7acb\u6b63\u786e\u7684\u7761\u7720\u51c6\u5907\u884c\u4e3a\uff0c\u8fdb\u4e00\u6b65\u63d0\u9ad8\u7761\u7720\u8d28\u91cf\u3002"
+      }
+    ],
+    "type": "CHATBOT"
+  },
   "10": {
     "content": [
       {
         "next": 11,
-        "text": "\u4ee5\u4e0b\u7701\u7565\u4e00\u4e9b\u80cc\u666f\u8bf4\u660e~"
+        "option": "\u4ec0\u4e48\u662f\u7761\u7720\u8ba4\u77e5\u884c\u4e3a\u7597\u6cd5\uff1f",
+        "text": "\u4ec0\u4e48\u662f\u7761\u7720\u8ba4\u77e5\u884c\u4e3a\u7597\u6cd5\uff1f"
+      },
+      {
+        "next": 14,
+        "option": "\u597d\u7684\uff0c\u63a5\u4e0b\u6765\u5462\uff1f",
+        "text": "\u597d\u7684\uff0c\u63a5\u4e0b\u6765\u5462\uff1f"
       }
     ],
-    "type": "CHATBOT"
+    "option_type": "single",
+    "type": "USER"
   },
   "11": {
     "content": [
       {
         "next": 12,
-        "text": "\u597d\u54d2\u6211\u4eec\u76f4\u63a5\u8df3\u5230\u591a\u9009\u9898\uff01"
+        "text": "\u5168\u7403\u8fd115%\u7684\u6210\u5e74\u4eba\u9971\u53d7\u5931\u7720\u7684\u56f0\u6270\uff0c\u6bcf3\u4e2a\u4e2d\u56fd\u4eba\u4e2d\u5c31\u67091\u4e2a\u4eba\u6b63\u5728\u906d\u9047\u4e0d\u540c\u7a0b\u5ea6\u7684\u5931\u7720\uff0c\u8fd1\u534a\u6570\u4e25\u91cd\u5931\u7720\u5df2\u7ecf\u6301\u7eed10\u5e74\u4ee5\u4e0a\u3002\u5fc3\u7406\u79d1\u95e8\u8bca\u4e2d\u5e38\u6709\u5931\u7720\u60a3\u8005\u4f7f\u7528\u6cbb\u7597\u5931\u7720\u7684\u836f\u7269\u3002\u5176\u5b9e\u9664\u4e86\u7528\u836f\u4e4b\u5916\uff0c\u8fd8\u6709\u4e00\u79cd\u4e13\u95e8\u9488\u5bf9\u5931\u7720\u75c7\u72b6\u7684\u8ba4\u77e5\u884c\u4e3a\u65b9\u6cd5\uff1a\u7761\u7720\u8ba4\u77e5\u884c\u4e3a\u7597\u6cd5\uff08CBT-I\uff09\uff0cCBT-I\u662f\u5728\u5b9e\u9645\u5931\u7720\u6cbb\u7597\u4e2d\u88ab\u8bc1\u660e\u6709\u663e\u8457\u6548\u679c\u7684\u975e\u836f\u7269\u5e72\u9884\u624b\u6bb5\u3002"
       }
     ],
     "type": "CHATBOT"
@@ -129,7 +87,7 @@
     "content": [
       {
         "next": 13,
-        "text": "\u4f60\u60f3\u5728\u54ea\u4e9b\u65b9\u9762\u6539\u8fdb\u81ea\u5df1\u7684\u7761\u7720\u5462\uff1f"
+        "text": "CBT-I\u8ba4\u4e3a\u7761\u7720\u95ee\u9898\u662f\u7531\u9519\u8bef\u7684\u5e94\u5bf9\u884c\u4e3a\u548c\u5fc3\u7406\u9020\u6210\u7684"
       }
     ],
     "type": "CHATBOT"
@@ -137,39 +95,19 @@
   "13": {
     "content": [
       {
-        "option": "\u6211\u4e00\u822c\u4f1a\u82b1\u534a\u5c0f\u65f6\u4ee5\u4e0a\u7761\u7740\uff0c\u6211\u60f3\u8981\u66f4\u5bb9\u6613\u5730\u5165\u7761",
-        "text": "\u6211\u60f3\u8981\u66f4\u5bb9\u6613\u5730\u5165\u7761",
-        "unique": false
-      },
-      {
-        "option": "\u6211\u5728\u591c\u91cc\u9192\u6765\u7684\u65f6\u95f4\u5728\u534a\u5c0f\u65f6\u4ee5\u4e0a\uff0c\u6211\u60f3\u62e5\u6709\u66f4\u5b8c\u6574\u7684\u7761\u7720",
-        "text": "\u6211\u60f3\u62e5\u6709\u66f4\u5b8c\u6574\u7684\u7761\u7720",
-        "unique": false
-      },
-      {
-        "option": "\u4e0d\u8981\u592a\u65e9\u9192\u6765",
-        "text": "\u4e0d\u8981\u592a\u65e9\u9192\u6765",
-        "unique": false
-      },
-      {
-        "option": "\u4e0d\u8981\u665a\u7761",
-        "text": "\u4e0d\u8981\u665a\u7761",
-        "unique": false
-      },
-      {
-        "option": "\u4ee5\u4e0a\u90fd\u4e0d\u662f",
-        "text": "\u4ee5\u4e0a\u90fd\u4e0d\u662f",
-        "unique": true
+        "next": 14,
+        "option": "\u597d\u7684\uff0c\u63a5\u4e0b\u6765\u5462\uff1f",
+        "text": "\u597d\u7684\uff0c\u63a5\u4e0b\u6765\u5462\uff1f"
       }
     ],
-    "option_type": "multiple",
+    "option_type": "single",
     "type": "USER"
   },
   "14": {
     "content": [
       {
         "next": 15,
-        "text": "\u7720\u7720\u8bb0\u4f4f\u4e86\uff01"
+        "text": "\u7720\u7720\u4f1a\u5e2e\u4f60\u5236\u5b9a\u9002\u5408\u4f60\u7684\u884c\u4e3a\u6539\u53d8\u8ba1\u5212\uff0c\u6311\u6218\u4e0d\u5229\u4e8e\u7761\u7720\u7684\u60f3\u6cd5\uff0c\u901a\u8fc7\u5efa\u7acb\u65b0\u7684\u884c\u4e3a\u548c\u601d\u7ef4\u6a21\u5f0f\u6765\u6539\u5584\u7761\u7720\u95ee\u9898\u3002\u6539\u53d8\u5728\u4e00\u5f00\u59cb\u53ef\u80fd\u4f1a\u963b\u529b\u91cd\u91cd\uff0c\u4f46\u4f60\u8981\u76f8\u4fe1\u65b0\u7684\u884c\u4e3a\u548c\u601d\u7ef4\u4e00\u5b9a\u4f1a\u8ba9\u4f60\u7761\u5f97\u66f4\u597d\uff0c\u575a\u6301\u5c31\u662f\u80dc\u5229\u270c\ufe0f"
       }
     ],
     "type": "CHATBOT"
@@ -178,20 +116,404 @@
     "content": [
       {
         "next": 16,
-        "text": "\u4eca\u5929\u7684\u6d4b\u8bd5\u5c31\u5230\u8fd9\u91cc\u5566(\u2661\u02c3\ua1f4\u02c2\u2661)"
-      }
-    ],
-    "type": "CHATBOT"
-  },
-  "16": {
-    "content": [
+        "option": "Wow\uff0c\u597d\u554a",
+        "text": "Wow\uff0c\u597d\u554a"
+      },
       {
-        "next": -1,
-        "option": "\u55b5\u55b5\u55b5\uff1f\uff1f\uff1f",
-        "text": "\u5475\u5475\uff0c\u4f60\u8d70\u5427"
+        "next": 16,
+        "option": "\u4e86\u89e3\u4e86",
+        "text": "\u4e86\u89e3\u4e86"
       }
     ],
     "option_type": "single",
     "type": "USER"
+  },
+  "16": {
+    "content": [
+      {
+        "next": 17,
+        "text": "\u5728\u5f00\u59cb\u4e4b\u524d\u7720\u7720\u60f3\u8ba9\u4f60\u77e5\u9053\uff0c\u6211\u4f1a\u4fdd\u8bc1\u4f60\u7684\u4e2a\u4eba\u9690\u79c1\uff0c\u4f60\u7684\u6570\u636e\u4f1a\u4fdd\u6301\u5b8c\u5168\u533f\u540d\u3002"
+      }
+    ],
+    "type": "CHATBOT"
+  },
+  "17": {
+    "content": [
+      {
+        "next": 18,
+        "option": "\u6211\u660e\u767d\u4e86",
+        "text": "\u6211\u660e\u767d\u4e86"
+      },
+      {
+        "next": 18,
+        "option": "get\u2611\ufe0f",
+        "text": "get\u2611\ufe0f"
+      }
+    ],
+    "option_type": "single",
+    "type": "USER"
+  },
+  "18": {
+    "content": [
+      {
+        "next": 19,
+        "text": "\u63a5\u4e0b\u6765\u7684\u95ee\u9898\u975e\u5e38\u91cd\u8981\uff0c\u8010\u5fc3\u5b8c\u6210\u4e0e\u7720\u7720\u7684\u4e92\u52a8\u4f1a\u589e\u52a0\u6539\u53d8\u6210\u529f\u7684\u53ef\u80fd\u6027\u54e6\uff5e"
+      }
+    ],
+    "type": "CHATBOT"
+  },
+  "19": {
+    "content": [
+      {
+        "next": 20,
+        "option": "\u55ef\u55ef",
+        "text": "\u55ef\u55ef"
+      },
+      {
+        "next": 20,
+        "option": "\u597d\u7684",
+        "text": "\u597d\u7684"
+      }
+    ],
+    "option_type": "single",
+    "type": "USER"
+  },
+  "20": {
+    "content": [
+      {
+        "next": 21,
+        "text": "\u4f60\u60f3\u5728\u54ea\u4e9b\u65b9\u9762\u6539\u8fdb\u81ea\u5df1\u7684\u7761\u7720\u5462\uff1f"
+      }
+    ],
+    "type": "CHATBOT"
+  },
+  "21": {
+    "content": [
+      {
+        "next": 22,
+        "option": "\u6211\u4e00\u822c\u4f1a\u82b1\u534a\u5c0f\u65f6\u4ee5\u4e0a\u7761\u7740\uff0c\u6211\u60f3\u8981\u66f4\u5bb9\u6613\u5730\u5165\u7761",
+        "text": "\u6211\u4e00\u822c\u4f1a\u82b1\u534a\u5c0f\u65f6\u4ee5\u4e0a\u7761\u7740\uff0c\u6211\u60f3\u8981\u66f4\u5bb9\u6613\u5730\u5165\u7761",
+        "unique": false
+      },
+      {
+        "next": 22,
+        "option": "\u6211\u5728\u591c\u91cc\u9192\u6765\u7684\u65f6\u95f4\u5728\u534a\u5c0f\u65f6\u4ee5\u4e0a\uff0c\u6211\u60f3\u62e5\u6709\u66f4\u5b8c\u6574\u7684\u7761\u7720",
+        "text": "\u6211\u5728\u591c\u91cc\u9192\u6765\u7684\u65f6\u95f4\u5728\u534a\u5c0f\u65f6\u4ee5\u4e0a\uff0c\u6211\u60f3\u62e5\u6709\u66f4\u5b8c\u6574\u7684\u7761\u7720",
+        "unique": false
+      },
+      {
+        "next": 22,
+        "option": "\u4e0d\u8981\u592a\u65e9\u9192\u6765",
+        "text": "\u4e0d\u8981\u592a\u65e9\u9192\u6765",
+        "unique": false
+      },
+      {
+        "next": 22,
+        "option": "\u4e0d\u8981\u665a\u7761",
+        "text": "\u4e0d\u8981\u665a\u7761",
+        "unique": false
+      },
+      {
+        "next": 22,
+        "option": "TYPE**\u5176\u4ed6",
+        "text": "TYPE**\u5176\u4ed6",
+        "unique": false
+      }
+    ],
+    "option_type": "multiple",
+    "type": "USER"
+  },
+  "22": {
+    "content": [
+      {
+        "next": 23,
+        "text": "\u7720\u7720\u8bb0\u4f4f\u4e86\uff01"
+      }
+    ],
+    "type": "CHATBOT"
+  },
+  "23": {
+    "content": [
+      {
+        "next": 24,
+        "text": "\u8ba9\u6211\u5148\u95ee\u4f60\u51e0\u4e2a\u95ee\u9898\u6765\u66f4\u4e86\u89e3\u4f60\u7684\u7761\u7720\u60c5\u51b5\uff0c\u597d\u5417\uff1f"
+      }
+    ],
+    "type": "CHATBOT"
+  },
+  "24": {
+    "content": [
+      {
+        "next": 25,
+        "option": "\u597d\u7684",
+        "text": "\u597d\u7684"
+      },
+      {
+        "next": -1,
+        "option": "\u4e0d\u7528\u4e86\uff0c\u76f4\u63a5\u8df3\u5230\u5b9a\u5236\u7761\u7720\u8ba1\u5212",
+        "text": "\u4e0d\u7528\u4e86\uff0c\u76f4\u63a5\u8df3\u5230\u5b9a\u5236\u7761\u7720\u8ba1\u5212"
+      }
+    ],
+    "option_type": "single",
+    "type": "USER"
+  },
+  "25": {
+    "content": [
+      {
+        "next": 26,
+        "text": "(1/4)\u8bf7\u9009\u62e9\u7b26\u5408\u4f60\u7684\u63cf\u8ff0"
+      }
+    ],
+    "type": "CHATBOT"
+  },
+  "26": {
+    "content": [
+      {
+        "next": 27,
+        "option": "\u6709\u4eba\u544a\u8bc9\u8fc7\u4f60\u4f60\u7761\u89c9\u65f6\u9f3e\u58f0\u5f88\u5927",
+        "text": "\u6709\u4eba\u544a\u8bc9\u8fc7\u4f60\u4f60\u7761\u89c9\u65f6\u9f3e\u58f0\u5f88\u5927",
+        "unique": false
+      },
+      {
+        "next": 27,
+        "option": "\u6709\u4eba\u544a\u8bc9\u8fc7\u4f60\u4f60\u6709\u65f6\u4f1a\u5728\u7761\u89c9\u65f6\u4f1a\u505c\u6b62\u547c\u5438",
+        "text": "\u6709\u4eba\u544a\u8bc9\u8fc7\u4f60\u4f60\u6709\u65f6\u4f1a\u5728\u7761\u89c9\u65f6\u4f1a\u505c\u6b62\u547c\u5438",
+        "unique": false
+      },
+      {
+        "next": 27,
+        "option": "\u4f60\u4f1a\u5927\u53e3\u5598\u6c14\u7740\u7a81\u7136\u9192\u6765",
+        "text": "\u4f60\u4f1a\u5927\u53e3\u5598\u6c14\u7740\u7a81\u7136\u9192\u6765",
+        "unique": false
+      },
+      {
+        "next": 28,
+        "option": "\u4ee5\u4e0a\u90fd\u4e0d\u662f",
+        "text": "\u4ee5\u4e0a\u90fd\u4e0d\u662f",
+        "unique": true
+      }
+    ],
+    "option_type": "multiple",
+    "type": "USER"
+  },
+  "27": {
+    "content": [
+      {
+        "next": 28,
+        "text": "\u7720\u7720\u63a8\u6d4b\u4f60\u7684\u7761\u7720\u95ee\u9898\u5f88\u5927\u7a0b\u5ea6\u4e0a\u4e0e\u7761\u7720\u547c\u5438\u4e2d\u6b62\u75c7\u6709\u5173\uff0c\u5176\u75c7\u72b6\u5c31\u662f\u5728\u7761\u7720\u65f6\u4f1a\u6709\u6301\u7eed\u7684\u547c\u5438\u505c\u6b62\uff0c\u53bb\u770b\u4e13\u4e1a\u533b\u751f\u53ef\u80fd\u662f\u66f4\u9002\u5408\u4f60\u7684\u9009\u62e9\u54e6\u3002"
+      }
+    ],
+    "type": "CHATBOT"
+  },
+  "28": {
+    "content": [
+      {
+        "next": 29,
+        "text": "(2/4)\u8bf7\u9009\u62e9\u7b26\u5408\u4f60\u7684\u63cf\u8ff0"
+      }
+    ],
+    "type": "CHATBOT"
+  },
+  "29": {
+    "content": [
+      {
+        "next": 30,
+        "option": "\u4f60\u7ecf\u5e38\u6709\u6296\u817f\u7684\u51b2\u52a8\uff0c\u4f34\u6709\u817f\u90e8\u4e0d\u5b89\u7684\u611f\u89c9",
+        "text": "\u4f60\u7ecf\u5e38\u6709\u6296\u817f\u7684\u51b2\u52a8\uff0c\u4f34\u6709\u817f\u90e8\u4e0d\u5b89\u7684\u611f\u89c9",
+        "unique": false
+      },
+      {
+        "next": 30,
+        "option": "\u5f53\u4f60\u5f00\u59cb\u6296\u817f\u6216\u8005\u8d70\u8def\u7684\u65f6\u5019\uff0c\u8fd9\u79cd\u4e0d\u5b89\u611f\u4f1a\u77ed\u6682\u6d88\u5931",
+        "text": "\u5f53\u4f60\u5f00\u59cb\u6296\u817f\u6216\u8005\u8d70\u8def\u7684\u65f6\u5019\uff0c\u8fd9\u79cd\u4e0d\u5b89\u611f\u4f1a\u77ed\u6682\u6d88\u5931",
+        "unique": false
+      },
+      {
+        "next": 30,
+        "option": "\u8fd9\u79cd\u817f\u90e8\u7684\u4e0d\u5b89\u611f\u8ba9\u4f60\u96be\u4ee5\u5165\u7720",
+        "text": "\u8fd9\u79cd\u817f\u90e8\u7684\u4e0d\u5b89\u611f\u8ba9\u4f60\u96be\u4ee5\u5165\u7720",
+        "unique": false
+      },
+      {
+        "next": 31,
+        "option": "\u4ee5\u4e0a\u90fd\u4e0d\u662f",
+        "text": "\u4ee5\u4e0a\u90fd\u4e0d\u662f",
+        "unique": true
+      }
+    ],
+    "option_type": "multiple",
+    "type": "USER"
+  },
+  "30": {
+    "content": [
+      {
+        "next": 31,
+        "text": "\u7720\u7720\u63a8\u6d4b\u4f60\u7684\u7761\u7720\u95ee\u9898\u5f88\u5927\u7a0b\u5ea6\u4e0a\u4e0e\u591a\u52a8\u817f\u75c7\u6709\u5173\uff0c\u5176\u75c7\u72b6\u662f\u5bf9\u4e8e\u6296\u817f\u6709\u7740\u4e0d\u53ef\u62b5\u6297\u7684\u51b2\u52a8\uff0c\u53bb\u770b\u4e13\u4e1a\u533b\u751f\u53ef\u80fd\u662f\u66f4\u9002\u5408\u4f60\u7684\u9009\u62e9\u54e6\u3002"
+      }
+    ],
+    "type": "CHATBOT"
+  },
+  "31": {
+    "content": [
+      {
+        "next": 32,
+        "text": "(3/4)\u8bf7\u9009\u62e9\u7b26\u5408\u4f60\u7684\u63cf\u8ff0"
+      }
+    ],
+    "type": "CHATBOT"
+  },
+  "32": {
+    "content": [
+      {
+        "next": 33,
+        "option": "\u4f60\u6709\u5173\u8282\u708e\uff0f\u7ea4\u7ef4\u7ec4\u7ec7\u808c\u75db\uff0c\u6216\u8005\u6700\u8fd1\u6709\u4f24\u75db",
+        "text": "\u4f60\u6709\u5173\u8282\u708e\uff0f\u7ea4\u7ef4\u7ec4\u7ec7\u808c\u75db\uff0c\u6216\u8005\u6700\u8fd1\u6709\u4f24\u75db",
+        "unique": false
+      },
+      {
+        "next": 33,
+        "option": "\u8fd9\u4e9b\u8eab\u4f53\u7684\u75bc\u75db\u8ba9\u4f60\u96be\u4ee5\u5165\u7761\uff0f\u4ece\u68a6\u4e2d\u60ca\u9192",
+        "text": "\u8fd9\u4e9b\u8eab\u4f53\u7684\u75bc\u75db\u8ba9\u4f60\u96be\u4ee5\u5165\u7761\uff0f\u4ece\u68a6\u4e2d\u60ca\u9192",
+        "unique": false
+      },
+      {
+        "next": 34,
+        "option": "\u4ee5\u4e0a\u90fd\u4e0d\u662f",
+        "text": "\u4ee5\u4e0a\u90fd\u4e0d\u662f",
+        "unique": true
+      }
+    ],
+    "option_type": "multiple",
+    "type": "USER"
+  },
+  "33": {
+    "content": [
+      {
+        "next": 34,
+        "text": "\u7720\u7720\u63a8\u6d4b\u4f60\u7684\u7761\u7720\u95ee\u9898\u5f88\u5927\u7a0b\u5ea6\u4e0a\u4e0e\u5e26\u6765\u75bc\u75db\u7684\u533b\u7597\u60c5\u51b5\u6709\u5173\uff0c\u53bb\u770b\u4e13\u4e1a\u533b\u751f\u53ef\u80fd\u662f\u66f4\u9002\u5408\u4f60\u7684\u9009\u62e9\u54e6\u3002"
+      }
+    ],
+    "type": "CHATBOT"
+  },
+  "34": {
+    "content": [
+      {
+        "next": 35,
+        "text": "(4/4)\u8bf7\u9009\u62e9\u7b26\u5408\u4f60\u7684\u63cf\u8ff0"
+      }
+    ],
+    "type": "CHATBOT"
+  },
+  "35": {
+    "content": [
+      {
+        "next": 36,
+        "option": "\u4f60\u5728\u4e00\u5929\u7684\u5927\u591a\u6570\u65f6\u95f4\u91cc\u90fd\u611f\u5230\u60b2\u4f24\uff0c\u6291\u90c1\u6216\u7126\u8651",
+        "text": "\u4f60\u5728\u4e00\u5929\u7684\u5927\u591a\u6570\u65f6\u95f4\u91cc\u90fd\u611f\u5230\u60b2\u4f24\uff0c\u6291\u90c1\u6216\u7126\u8651",
+        "unique": false
+      },
+      {
+        "next": 36,
+        "option": "\u4f60\u6ca1\u6709\u505a\u4e8b\u60c5\u7684\u80fd\u91cf\u548c\u52a8\u529b",
+        "text": "\u4f60\u6ca1\u6709\u505a\u4e8b\u60c5\u7684\u80fd\u91cf\u548c\u52a8\u529b",
+        "unique": false
+      },
+      {
+        "next": 36,
+        "option": "\u4f60\u6709\u65f6\u5019\u4f1a\u6beb\u65e0\u7406\u7531\u5730\u5bf9\u81ea\u5df1\u611f\u89c9\u7279\u522b\u826f\u597d",
+        "text": "\u4f60\u6709\u65f6\u5019\u4f1a\u6beb\u65e0\u7406\u7531\u5730\u5bf9\u81ea\u5df1\u611f\u89c9\u7279\u522b\u826f\u597d",
+        "unique": false
+      },
+      {
+        "next": 39,
+        "option": "\u4ee5\u4e0a\u90fd\u4e0d\u662f",
+        "text": "\u4ee5\u4e0a\u90fd\u4e0d\u662f",
+        "unique": true
+      }
+    ],
+    "option_type": "multiple",
+    "type": "USER"
+  },
+  "36": {
+    "content": [
+      {
+        "next": 37,
+        "text": "\u7720\u7720\u63a8\u6d4b\u4f60\u7684\u7761\u7720\u95ee\u9898\u5f88\u5927\u7a0b\u5ea6\u4e0a\u4e0e\u5fc3\u7406\u5065\u5eb7\u72b6\u6001\u6709\u5173\uff0c\u7720\u7720\u5efa\u8bae\u4f60\u5bfb\u6c42\u4e13\u4e1a\u5fc3\u7406\u533b\u751f\u7684\u5e2e\u52a9\uff0c\u53ea\u6709\u89e3\u51b3\u4e86\u5fc3\u7406\u95ee\u9898\u624d\u80fd\u4ece\u6839\u672c\u4e0a\u89e3\u51b3\u5931\u7720\u95ee\u9898\u3002"
+      }
+    ],
+    "type": "CHATBOT"
+  },
+  "37": {
+    "content": [
+      {
+        "next": 38,
+        "text": "\u7720\u7720\u53ef\u4ee5\u4e00\u5b9a\u7a0b\u5ea6\u4e0a\u5e2e\u4f60\u7f13\u89e3\u7761\u7720\u95ee\u9898\uff0c\u8bf7\u95ee\u4f60\u60f3\u8981\u8fdb\u4e00\u6b65\u4e86\u89e3\u5417\uff1f"
+      }
+    ],
+    "type": "CHATBOT"
+  },
+  "38": {
+    "content": [
+      {
+        "next": 39,
+        "option": "\u597d\u7684",
+        "text": "\u597d\u7684"
+      },
+      {
+        "next": 39,
+        "option": "\u7b97\u4e86\u5427",
+        "text": "\u7b97\u4e86\u5427"
+      },
+      {
+        "next": 39,
+        "option": "\u6211\u60f3\u8981\u83b7\u5f97\u4e13\u4e1a\u7684\u5fc3\u7406\u5e2e\u52a9",
+        "text": "\u6211\u60f3\u8981\u83b7\u5f97\u4e13\u4e1a\u7684\u5fc3\u7406\u5e2e\u52a9"
+      }
+    ],
+    "option_type": "single",
+    "type": "USER"
+  },
+  "39": {
+    "content": [
+      {
+        "next": 40,
+        "text": "\u592a\u597d\u4e86\uff0c\u7720\u7720\u5e94\u8be5\u53ef\u4ee5\u5e2e\u5230\u4f60\uff01"
+      }
+    ],
+    "type": "CHATBOT"
+  },
+  "40": {
+    "content": [
+      {
+        "next": 41,
+        "text": "\u4f60\u4eca\u5929\u8fd8\u60f3\u7ee7\u7eed\u5417\uff1f\u6216\u8005\u4f60\u53ef\u4ee5\u660e\u5929\u518d\u8fdb\u6765\u770b\u770b\u7720\u7720\u5177\u4f53\u53ef\u4ee5\u600e\u4e48\u5e2e\u5230\u4f60\u3002"
+      }
+    ],
+    "type": "CHATBOT"
+  },
+  "41": {
+    "content": [
+      {
+        "next": 42,
+        "option": "\u6211\u8fd8\u60f3\u77e5\u9053\u66f4\u591a",
+        "text": "\u6211\u8fd8\u60f3\u77e5\u9053\u66f4\u591a"
+      },
+      {
+        "next": 42,
+        "option": "\u4eca\u5929\u6709\u70b9\u5fd9\uff0c\u4e0b\u6b21\u5427",
+        "text": "\u4eca\u5929\u6709\u70b9\u5fd9\uff0c\u4e0b\u6b21\u5427"
+      }
+    ],
+    "option_type": "single",
+    "type": "USER"
+  },
+  "42": {
+    "content": [
+      {
+        "next": -1,
+        "text": "\u597d\u7684\uff0c\u660e\u5929\u89c1\u5566"
+      }
+    ],
+    "type": "CHATBOT"
   }
 }

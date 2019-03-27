@@ -1,5 +1,5 @@
 {
-  "name": "sum",
+  "name": "get_user_config",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
