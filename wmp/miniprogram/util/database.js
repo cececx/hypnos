@@ -14,9 +14,11 @@ function setIntroStage(stage) {
   });
 }
 
-function getUserConfig() {
-  return wx.cloud.callFunction({
+function loadUserProfile() {
+  wx.cloud.callFunction({
     name: "get_user_config",
+  }).then((res) => {
+    console.log(res);
   });
 }
 
@@ -40,6 +42,6 @@ function loadChat(name, id, callback) {
 
 module.exports = {
   setIntroStage: setIntroStage,
-  getUserConfig: getUserConfig,
+  loadUserProfile: loadUserProfile,
   loadChat: loadChat
 }

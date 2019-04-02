@@ -2,11 +2,16 @@
 var chat = require('../../util/chat.js');
 var database = require('../../util/database.js');
 
-const TYPE = {
+const OPTION_TYPE = {
   SINGLE_SELECT: 'single',
   MULTI_SELECT: 'multiple',
   PICKER: 'picker',
   TEXT_INPUT: 'text_input'
+};
+
+const CHAT_TYPE = {
+  CHATBOT: 'chatbot',
+  USER: 'user'
 };
 
 const TIMEOUT_MSG_BEFORE = 0;
@@ -16,7 +21,31 @@ const PICKER_TEMP_TEXT = "___";
 Page({
 
   /**
-   * 页面的初始数据
+   * Display data.
+   * chat: { type:CHAT_TYPE, content:string }[]
+   * option_display: bool
+   * option_type: OPTION_TYPE
+   * options (multiple): { 
+   *    content:   (string) option content.
+   *    text:      (string) message content.
+   *    exclusive: (boolean) whether this option is exclusive.
+   *    next:      (number) next id.
+   *    checked:   (boolean) whether this option is checked.
+   * }[]
+   * options (single): {
+   *    content:   (string) option content.
+   *    text :     (string) message content.
+   *    next :     (number) next id.
+   * }[]
+   * options (picker): {
+   *    template:  (string) picker display message template.
+   *    type:      (string) "range" | "time" | "date".
+   *    content:   (string) picker display message.
+   *    range:     (string[]) content.range.
+   *    value:     (number|string) current value.
+   *    class:     (string) "checked" if checked.
+   * }[]
+   * send_state: (string) "disabled" if disabled
    */
   data: {
     chat: [],
@@ -27,23 +56,15 @@ Page({
     scrollTop: 0,
   },
 
+  current_id: -1,
+  default_next_id: -1,
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    chat.loadChat().then(this.loadFromDbAndStart);
-  },
-
-  /**
-   * Loads chat script config from db.
-   */
-  loadFromDbAndStart: function (stage) {
-    let name = stage.name;
-    let id = stage.id;
-    database.loadChat(name, id, (chatflow, id)=>{
-      this.chat_flow = chatflow;
-      this.loadMessage(id);
-    });
+    // database.loadUserProfile();
+    chat.loadChat().then(this.loadMessage);
   },
 
   getOptionCallback: function (id) {
@@ -61,25 +82,28 @@ Page({
    * @param {Object[]} options
    * @returns {Promise<Resolve>}
    */
-  resolveReaction: function (id, type, options) {
+  resolveReaction: function (type, options) {
     return new Promise((resolve, reject) => {
-      chat.resolveReaction(id, options).then((res) => {
-        console.log(res)
-        if (res.next == -1) {
-          console.log("bbbb")
-          res = this.resolveDefault(type, options)
+      chat.resolveReaction(this.current_id, options).then((res) => {
+        if (res.useDefault) {
+          resolve(this.resolveDefault(type, options));
         }
-        resolve(res);
+        else {
+          if (res.next == -1) {
+            res.next = this.default_next_id;
+          }
+          resolve(res);
+        }
       })
     });
   },
 
   resolveDefault: function (type, options) {
-    console.log(type)
     switch (type) {
-      case TYPE.MULTI_SELECT:
-        console.log("aaa")
+      case OPTION_TYPE.MULTI_SELECT:
         return this.resolveMultiSelect(options);
+      case OPTION_TYPE.PICKER:
+        return this.resolvePicker(options);
       default:
         return { next: -2, msg: "" }; 
     }
@@ -114,6 +138,18 @@ Page({
     }
   },
 
+  resolvePicker: function (options) {
+    let lines = [];
+    let next = this.default_next_id;
+    for (let i = 0; i < options.length; i++) {
+      lines.push(options[i].content);
+    }
+    return {
+      next: next,
+      msg: lines.join("，")
+    };
+  },
+
   callbackSleepLength: function (value) {
     return {
       next: PK_SLEEP_LENGTH_NEXT
@@ -139,28 +175,54 @@ Page({
   },
 
   loadMessage: function (id) {
+    if (id == undefined) {
+      console.error("loadMessage: id is undefined");
+      return;
+    }
     if (id == -2) {
-      return
+      return;
     }
-    let message = this.chat_flow[id]
-    if (message.type == "CHATBOT") {
-      this.addChatbotMessage(message.content[0])
-    }
-    else if (message.type == "USER") {
-      switch(message.option_type) {
-        case TYPE.SINGLE_SELECT:
-          this.addSingleSelect(message.content)
-          break
-        case TYPE.MULTI_SELECT:
-          this.addMultiSelect(message.content, id)
-          break
-        case TYPE.PICKER:
-          this.addPicker(message.content, id)
-          break
-        default:
-          break
+    if (this.chat_flow && this.chat_flow[id]) {
+      this.loadMessageContext(id);
+      return;
+    } else {
+      let name = chat.getScriptName(id);
+      if (name) {
+        database.loadChat(name, id, (chatflow, id) => {
+          console.log(`Loading script "${name}"`)
+          this.chat_flow = chatflow;
+          this.loadMessage(id);
+        });
+      } else {
+        console.error("Failed to load script name");
       }
     }
+  },
+
+  loadMessageContext: function(id) {
+    console.log("loadMessageContext: ", id);
+    chat.loadMessageNode(id, this.chat_flow[id]).then((message) => {
+      this.current_id = id;
+      this.default_next_id = message.default_next;
+      if (message.type == "CHATBOT") {
+        this.addChatbotMessage(message.content[0])
+      }
+      else if (message.type == "USER") {
+        switch (message.option_type) {
+          case OPTION_TYPE.SINGLE_SELECT:
+            this.addSingleSelect(message.content);
+            break;
+          case OPTION_TYPE.MULTI_SELECT:
+            this.addMultiSelect(message.content, id);
+            break;
+          case OPTION_TYPE.PICKER:
+            this.addPicker(message.content, id);
+            break;
+          default:
+            break;
+        }
+      }
+    });
   },
 
   addChatbotMessage: function (content) {
@@ -185,18 +247,18 @@ Page({
     this.setData({
       options: this.data.options,
       option_display: true,
-      option_type: TYPE.SINGLE_SELECT
+      option_type: OPTION_TYPE.SINGLE_SELECT
     })
     this.scrollToBottom()
   },
 
-  addMultiSelect: function (content, id) {
+  addMultiSelect: function (content) {
     for (let i = 0; i < content.length; i++) {
       let option = content[i]
       this.data.options.push({
         content: option.option,
         text: option.text,
-        unique: option.unique,
+        exclusive: option.unique,
         next: option.next,
         checked: false
       })
@@ -204,24 +266,45 @@ Page({
     this.setData({
       options: this.data.options,
       option_display: true,
-      option_type: TYPE.MULTI_SELECT,
-      option_id: id,
+      option_type: OPTION_TYPE.MULTI_SELECT,
     })
-    this.scrollToBottom()
+    this.scrollToBottom();
   },
 
-  addPicker: function (content, id) {
+  addPicker: function (content) {
+    console.log("add picker ", content)
+    let options = [];
+    for (let i = 0; i < content.length; i++) {
+      let option = content[i];
+      let mode = option.type;
+      let value = option.default_value;
+      let replace_text = PICKER_TEMP_TEXT;
+      if (option.replace_text) {
+        replace_text = option.replace_text;
+      }
+      if (mode == "range") {
+        mode = "selector";
+        for (let i = 0; i < option.range.length; i++) {
+          if (option.range[i] == value) {
+            value = i;
+            break;
+          }
+        }
+      }
+      options.push({
+        mode: mode,
+        template: option.template,
+        content: option.template.replace("{}", replace_text),
+        range: option.range,
+        value: value,
+      })
+    }
     this.setData({
-      picker: {
-        template: content.template,
-        content: content.template.replace("{}", PICKER_TEMP_TEXT),
-        range: content.range,
-        value: content.index,
-      },
+      options: options,
       option_display: true,
-      option_type: TYPE.PICKER,
-      option_id: id
-    })
+      option_type: OPTION_TYPE.PICKER,
+      send_state: "disabled"
+    });
     this.scrollToBottom()
   },
 
@@ -245,7 +328,7 @@ Page({
     this.data.options[id].checked = !this.data.options[id].checked
     // Toggle other selections.
     for (let i = 0; i < len; i++) {
-      if (this.data.options[id].unique != this.data.options[i].unique) {
+      if (this.data.options[id].exclusive != this.data.options[i].exclusive) {
         this.data.options[i].checked = false;
       }
     }
@@ -263,7 +346,7 @@ Page({
     if (this.data.option_state == "disabled") {
       return
     }
-    this.resolveReaction(this.data.option_id, TYPE.MULTI_SELECT, this.data.options)
+    this.resolveReaction(OPTION_TYPE.MULTI_SELECT, this.data.options)
       .then((res) => {
         console.log(res)
         this.setData({
@@ -276,29 +359,43 @@ Page({
   },
 
   onPickerChange: function (e) {
-    let index = e.detail.value
-    let content = this.data.picker.template.replace('{}', this.data.picker.range[index])
-    this.data.picker.value = index
-    this.data.picker.content = content
-    this.data.picker.class = "checked"
-    this.data.picker.selected = true
+    console.log(e);
+    let id = parseInt(e.target.id);
+    let picker = this.data.options[id];
+    let value = e.detail.value;
+    if (picker.mode == 'selector') {
+      value = picker.range[value];
+    }
+    picker.content = picker.template.replace('{}', value);
+    picker.class = "checked"
+    this.data.options[id] = picker;
+    let ready = true;
+    for (let i = 0; i < this.data.options.length; i++) {
+      if (this.data.options[i].class != "checked") {
+        ready = false;
+        break;
+      }
+    }
     this.setData({
-      picker: this.data.picker,
-      send_state: true
-    })
+      options: this.data.options,
+      send_state: ready ? "" : "disabled"
+    });
   },
 
   onPickerSend: function (e) {
-    if (!this.data.picker.selected) {
+    if (this.data.send_state == "disabled") {
       return
     }
-    this.sendMessage(this.data.picker.content, "user")
-    this.setData({
-      picker: {},
-      option_display: false
-    })
-    let res = this.getOptionCallback(this.data.option_id)(this.data.picker.value)
-    this.loadMessage(res.next)
+    this.resolveReaction(OPTION_TYPE.PICKER, this.data.options)
+      .then((res) => {
+        this.setData({
+          options: [],
+          option_display: false
+        })
+        this.sendMessage(res.msg, "user");
+        this.loadMessage(res.next);
+      });
+    return;
   },
 
   /**

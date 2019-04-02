@@ -10,7 +10,7 @@ exports.main = async (event, context) => {
 
   try {
     let res = await db.collection(USER_TABLE).doc(openid).get();
-    return res.data;
+    return res.data.profile;
   } catch (err) {
     return {};
   }

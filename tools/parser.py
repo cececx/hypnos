@@ -1,8 +1,8 @@
 import json
 import sys
 
-CONFIG_FILE = 'flow_config_{}'.format(sys.argv[1])
-OUTPUT_FILE = 'flow_{}.json'.format(sys.argv[1])
+CONFIG_FILE = 'flow_script_{}'.format(sys.argv[1])
+OUTPUT_FILE = 'flow_config_{}.json'.format(sys.argv[1])
 UNIQUE_PREFIX = 'UNIQUE**'
 OPTION_TYPE_MAP = {
   'S': 'single',
@@ -62,12 +62,18 @@ def create_multi_content(lines, default_next):
   return content
 
 
-def create_picker_content(lines):
-  return {
-    'template': lines[0],
-    'range': lines[1].split(','),
-    'index': int(lines[2])
-  }
+def create_picker_content(lines, default_next):
+  content = []
+  for line in lines:
+    template_, type_, range_, value_ = line.split('|')
+    range_ = range_.split(',') if type_ == 'range' else []
+    content.append({
+      'template': template_,
+      'type': type_,
+      'range': range_,
+      'default_value': value_
+    })
+  return content
 
 
 OPTION_SWITCHER = {
@@ -78,17 +84,22 @@ OPTION_SWITCHER = {
 
 
 def create_user_node(msg):
+  if not msg['options']:
+    raise('User content is empty!')
   default_next = -1
   if ('>>' in msg['content']):
     default_next = int(msg['content'].split('>>')[-1])
   node = {}
   node['type'] = 'USER'
+  node['default_next'] = default_next
   node['option_type'] = OPTION_TYPE_MAP[msg['type']]
   node['content'] = OPTION_SWITCHER[msg['type']](msg['options'], default_next)
   return node
 
 
 def add_message(flow, msg):
+  if msg['id'] in flow:
+    raise('Duplicated id: {}'.format(msg['id']))
   if msg['type'] == 'B':
     item = create_chatbot_node(msg)
   else:
@@ -117,14 +128,13 @@ def parse_config(flow, lines):
     except:
       print('Error at line [{}]: {}'.format(i, lines[i].strip()))
       raise
-      
 
 
 def main():
   flow = {}
   with open(CONFIG_FILE, 'r') as f:
     parse_config(flow, f.readlines())
-  print(flow)
+  # print(flow)
   with open(OUTPUT_FILE, 'w') as f:
     json.dump(flow, f, indent=2, sort_keys=True)
 

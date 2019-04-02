@@ -32,11 +32,14 @@
 
       <!-- Time selector -->
       <view wx:if="{{option_type=='picker'}}">
-        <picker class="options options-multiple"
+        <picker wx:for="{{options}}"
+                class="options options-multiple"
+                id="{{index}}"
+                mode="{{item.mode}}"
                 bindchange="onPickerChange" 
-                value="{{picker.value}}" 
-                range="{{picker.range}}">
-          <button class="{{picker.class}}">{{picker.content}}</button>
+                value="{{item.value}}" 
+                range="{{item.range}}">
+          <button class="{{item.class}}">{{item.content}}</button>
         </picker>
         <button class="confirm-btn {{send_state}}" bindtap="onPickerSend">确认</button>
       </view>

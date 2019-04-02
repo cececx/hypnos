@@ -10,6 +10,11 @@ App({
       })
     }
 
-    this.globalData = {}
+    this.globalData = {
+      user: {
+        profile: {},
+        progress: {}
+      }
+    }
   }
 })
