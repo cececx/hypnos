@@ -1,1 +1,13 @@
-/* miniprogram/pages/journal/journal.wxss */
+.date {
+  font-size: 10pt;
+}
+.time {
+  font-size: 14pt;
+  font-weight: bold;
+}
+.card-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+

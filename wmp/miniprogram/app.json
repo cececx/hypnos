@@ -1,9 +1,9 @@
 {
   "pages": [
+    "pages/journal/journal",
     "pages/chatbot/chatbot",
     "pages/user/user",
     "pages/toolbox/toolbox",
-    "pages/journal/journal",
     "pages/log/log"
   ],
   "window": {

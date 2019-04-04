@@ -1,0 +1,15 @@
+<view class="container">
+<div li wx:for="{{journal}}" class="card">
+  <div class="card-content">
+    <div class="card-title">
+      <span class="time">{{item.sleepTime}} - {{item.wakeUpTime}}</span>
+      <span class="date">{{item.date}}</span>
+    </div>
+    <div class="content">
+      <span wx:for="{{item.activities}}">
+        · {{item}}
+      </span>
+    </div>
+  </div>
+</div>
+</view>

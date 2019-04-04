@@ -23,3 +23,8 @@
   margin-bottom: 14rpx;
   font-size: 14pt;
 }
+
+.content {
+  font-size: 12pt;
+  margin-bottom: 12rpx;
+}
